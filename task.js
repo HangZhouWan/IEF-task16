@@ -35,7 +35,7 @@ function renderAqiList() {
 	var table = document.getElementById("aqi-table");
 	var items = "<tr><td>城市</td><td>API指数</td><td>操作</td></tr>";
 	for( city in aqiData){
-		items = items + "<tr><td>"+city+"<td/>"+aqiData[city]+"</td><td><button>删除</button></td></tr>";
+		items = items + "<tr><td>"+city+"<td/>"+aqiData[city]+"</td><td><button data-city= '"+city+"'>删除</button></td></tr>";
 	}
 	table.innerHTML = items;
 	var btn = table.getElementsByTagName("button");
@@ -59,11 +59,8 @@ function addBtnHandle() {
  */
 function delBtnHandle() {
   // do sth.
-  var parent = this.parentNode;
-  var accParent = parent.parentNode;
-  var grand = accParent.parentNode;
-  grand.removeChild(accParent);
-
+  var cityAttr = this.getAttribute("data-city");
+  delete aqiData[cityAttr];
   //renderAqiList();
 }
 
