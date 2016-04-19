@@ -38,7 +38,11 @@ function delbtn(){
 	var delCity = this.getAttribute("data-city");
 	delete data[delCity];
 	var table = $("#aqi-table");
-	if(data isEmpty){
+	var flag = true;
+	for(var i in data){
+		flag = false;
+	}
+	if(flag){
 		table.innerHTML = "";
 	}
 	render(data);
