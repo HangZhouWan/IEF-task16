@@ -17,8 +17,13 @@ function getInput(){
 function render(data){
 	var inner = "<tr><th>城市</th><th>AQI指数</th><th>操作</th></tr>";
 	var table = $("#aqi-table");
+	var flag = ture;
 	for(var i in data){
 		inner += "<tr><td>"+i+"</td><td>"+data[i]+"</td><td><button data-city='"+i+"'>删除</button></td></tr>";
+		flag = false;
+	}
+	if(flag){
+		table.innerHTML = "";
 	}
 	table.innerHTML = inner;
 	var btn = table.querySelectorAll("button");
@@ -38,13 +43,6 @@ function delbtn(){
 	var delCity = this.getAttribute("data-city");
 	delete data[delCity];
 	var table = $("#aqi-table");
-	var flag = true;
-	for(var i in data){
-		flag = false;
-	}
-	if(flag){
-		table.innerHTML = "";
-	}
 	render(data);
 }
 	
